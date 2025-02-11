@@ -5,7 +5,7 @@
 #define _3DR_SCREEN_HEIGHT 480
 
 #include "lib/frame_buffer/frame_buffer.h"
-
+#include "lib/graphical/triangle_rasterization.h"
 
 
 #ifdef _3DR_PLATFORM_SDL

@@ -12,9 +12,11 @@ DEFINE_PLATFORM = -D_3DR_PLATFORM_SDL
 PLATFORM_IMPLEMENT = platform/sdl_implement.c
 endif
 
+OBJS = main.o platform.o lib/frame_buffer/frame_buffer.o lib/graphical/triangle_rasterization.o
+
 # 目標可執行檔
-output.out: main.o platform.o lib/frame_buffer/frame_buffer.o
-	$(CC) $(CCFLAGS) $(DEFINE_PLATFORM) main.o platform.o lib/frame_buffer/frame_buffer.o -o output.out $(LDFLAGS)
+output.out: $(OBJS)
+	$(CC) $(CCFLAGS) $(DEFINE_PLATFORM) $(OBJS) -o output.out $(LDFLAGS)
 
 # 平台相關編譯規則
 platform.o: 
