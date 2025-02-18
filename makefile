@@ -3,7 +3,7 @@ CC = clang
 
 # 編譯選項
 CCFLAGS = -Wall -Wextra
-LDFLAGS = -lSDL2 -lSDL2main
+LDFLAGS = -lSDL2 -lSDL2main -lm
 
 # 預設平台定義
 ifeq ($(PLATFORM), SDL)
@@ -12,7 +12,7 @@ DEFINE_PLATFORM = -D_3DR_PLATFORM_SDL
 PLATFORM_IMPLEMENT = platform/sdl_implement.c
 endif
 
-OBJS = main.o platform.o lib/frame_buffer/frame_buffer.o lib/graphical/triangle_rasterization.o
+OBJS = main.o platform.o lib/frame_buffer/frame_buffer.o lib/graphical/triangle_rasterization.o lib/utils/transform.o
 
 # 目標可執行檔
 output.out: $(OBJS)

@@ -4,8 +4,14 @@
 #define _3DR_SCREEN_WIDTH 640
 #define _3DR_SCREEN_HEIGHT 480
 
+#define _3DR_NEAR_PLANE 0.1
+#define _3DR_FAR_PLANE 1000
+#define _3DR_FOV_DEGREE 60
+#define _3DR_ASPECT (_3DR_SCREEN_WIDTH / _3DR_SCREEN_HEIGHT)
+
 #include "lib/frame_buffer/frame_buffer.h"
 #include "lib/graphical/triangle_rasterization.h"
+#include "lib/utils/transform.h"
 
 
 #ifdef _3DR_PLATFORM_SDL
