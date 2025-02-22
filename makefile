@@ -5,6 +5,8 @@ CC = clang
 CCFLAGS = -Wall -Wextra
 LDFLAGS = -lSDL2 -lSDL2main -lm
 
+PLATFORM = SDL
+
 # 預設平台定義
 ifeq ($(PLATFORM), SDL)
 $(info Compiling for SDL...)

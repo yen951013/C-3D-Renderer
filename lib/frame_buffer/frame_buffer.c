@@ -8,3 +8,14 @@ _3DR_FrameBuffer _3DR_newFrameBuffer(size_t width, size_t height) {
 
     return frameBuffer;
 }
+
+void _3DR_drawRectangle(_3DR_FrameBuffer *frameBuffer, int x, int y, int width, int height, uint32_t color) {
+    if (x < 0 || y < 0 || x + width > (int)frameBuffer->width || y + height > (int)frameBuffer->height) {
+        return;
+    }
+    for (int i = x; i < x + width; i++) {
+        for (int j = y; j < y + height; j++) {
+            frameBuffer->pixels[j * frameBuffer->width + i] = color;
+        }
+    }
+}

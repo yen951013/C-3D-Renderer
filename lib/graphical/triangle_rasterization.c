@@ -11,7 +11,10 @@ void _3DR_drawTriangle(_3DR_FrameBuffer *frameBuffer, int x1, int y1, int x2, in
     int minY = maxInTwoInt(0                      , minInThreeInt(y1, y2, y3));
     int maxY = minInTwoInt(frameBuffer->height - 1, maxInThreeInt(y1, y2, y3));
 
-    // int ABC = edgeFunction(x1, y1, x2, y2, x3, y3);
+    int ABC = edgeFunction(x1, y1, x2, y2, x3, y3);
+    if (ABC < 0) {
+        return;
+    }
 
     for (int y = minY; y <= maxY; y++) {
         for (int x = minX; x <= maxX; x++) {
