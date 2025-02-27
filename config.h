@@ -11,8 +11,10 @@
 
 #include "lib/frame_buffer/frame_buffer.h"
 #include "lib/graphical/triangle_rasterization.h"
-#include "lib/utils/transform.h"
-
+#include "lib/graphical/transform.h"
+#include "lib/utils/vector.h"
+#include "lib/model/model.h"
+#include "lib/model/obj_parser.h"
 
 #ifdef _3DR_PLATFORM_SDL
     #include "platform/sdl_implement.h"

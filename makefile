@@ -14,7 +14,13 @@ DEFINE_PLATFORM = -D_3DR_PLATFORM_SDL
 PLATFORM_IMPLEMENT = platform/sdl_implement.c
 endif
 
-OBJS = main.o platform.o lib/frame_buffer/frame_buffer.o lib/graphical/triangle_rasterization.o lib/utils/transform.o
+OBJS = main.o \
+platform.o \
+lib/graphical/transform.o \
+lib/graphical/triangle_rasterization.o \
+lib/frame_buffer/frame_buffer.o \
+lib/utils/vector.o \
+lib/model/obj_parser.o
 
 # 目標可執行檔
 output.out: $(OBJS)
