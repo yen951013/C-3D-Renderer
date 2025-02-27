@@ -7,7 +7,7 @@
 #include <stdbool.h>
 #include "model.h"
 
-_3DR_Model _3DR_loadModel(const char *filePath);
-void _3DR_deleteModel(_3DR_Model *model);
+_3DR_Model _3DR_Model_loadModel(const char *filePath);
+void _3DR_Model_deleteModel(_3DR_Model *model);
 
 #endif  // _3DR_OBJ_PARSER_H

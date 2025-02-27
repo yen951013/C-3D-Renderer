@@ -1,7 +1,7 @@
 #include "obj_parser.h"
 #include "../utils/vector.h"
 
-_3DR_Model _3DR_loadModel(const char *filePath) {
+_3DR_Model _3DR_Model_loadModel(const char *filePath) {
     FILE *fpt = fopen(filePath, "r");
     if (fpt == NULL) {
         printf("OBJ_newModel(): File not found.\n");
@@ -31,7 +31,7 @@ _3DR_Model _3DR_loadModel(const char *filePath) {
 
     if (!model.vertices || !model.normals || !model.faces) {
         printf("OBJ_newModel(): Memory allocation failed.\n");
-        _3DR_deleteModel(&model);
+        _3DR_Model_deleteModel(&model);
         fclose(fpt);
         return (_3DR_Model){0};
     }
@@ -69,10 +69,10 @@ _3DR_Model _3DR_loadModel(const char *filePath) {
         Vec3 u = {p2.x - p1.x, p2.y - p1.y, p2.z - p1.z};
         Vec3 v = {p3.x - p1.x, p3.y - p1.y, p3.z - p1.z};
 
-        Vec3 normal = Vec3_crossProduct(u, v);
+        Vec3 normal = _3DR_Vec3_crossProduct(u, v);
         // 如果兩者「方向相同」（點積 > 0），則頂點順序應該是順時針 (CW)，需要交換 v2 和 v3
         // 如果兩者「方向相反」（點積 < 0），則頂點順序已經是逆時針 (CCW)
-        if (Vec3_dotProduct(normal, model.normals[model.faces[i].n1]) > 0) {
+        if (_3DR_Vec3_dotProduct(normal, model.normals[model.faces[i].n1]) > 0) {
             int temp = model.faces[i].p2;
             model.faces[i].p2 = model.faces[i].p3;
             model.faces[i].p3 = temp;
@@ -85,7 +85,7 @@ _3DR_Model _3DR_loadModel(const char *filePath) {
     return model;
 }
 
-void _3DR_deleteModel(_3DR_Model *model) {
+void _3DR_Model_deleteModel(_3DR_Model *model) {
     // 釋放記憶體
     free(model->vertices);
     free(model->normals);
