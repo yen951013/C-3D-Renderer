@@ -4,6 +4,20 @@ Matrix4x4 _3DR_Mat_newZeroMatrix4x4() {
     Matrix4x4 mat = {0};
     return mat;
 }
+Matrix4x4 _3DR_Mat_newTranslationMat4x4(float tx, float ty, float tz) {
+    Matrix4x4 mat = {0};
+
+    mat.m[0] = 1.0f;
+    mat.m[5] = 1.0f;
+    mat.m[10] = 1.0f;
+    mat.m[15] = 1.0f;
+    
+    mat.m[3] = tx;
+    mat.m[7] = ty;
+    mat.m[11] = tz;
+
+    return mat;
+}
 Matrix4x4 _3DR_Mat_newRotationMat4x4_X(float theta) {
 	Matrix4x4 mat = {0};  // 初始化為 0 矩陣
 	

@@ -9,6 +9,7 @@ typedef struct Matrix4x4 {
 } Matrix4x4;
 
 Matrix4x4 _3DR_Mat_newZeroMatrix4x4();
+Matrix4x4 _3DR_Mat_newTranslationMat4x4(float tx, float ty, float tz);
 Matrix4x4 _3DR_Mat_newRotationMat4x4_X(float theta);
 Matrix4x4 _3DR_Mat_newRotationMat4x4_Y(float theta);
 Matrix4x4 _3DR_Mat_newRotationMat4x4_Z(float theta);
