@@ -9,7 +9,7 @@ _3DR_Model _3DR_Model_loadModel(const char *filePath) {
     }
 
     char line[128];
-    _3DR_Model model = {0, 0, 0, 0, NULL, NULL, NULL, NULL};
+    _3DR_Model model = {0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL};
     
     // 第一次遍歷：統計數量
     while (fgets(line, sizeof(line), fpt) != NULL) {
@@ -25,11 +25,12 @@ _3DR_Model _3DR_Model_loadModel(const char *filePath) {
     }
 
     // 分配記憶體
-    model.vertices = malloc(model.v_count * sizeof(Vec3));
-    model.normals = malloc(model.vn_count * sizeof(Vec3));
-    model.faces = malloc(model.f_count * sizeof(_3DR_Face));
+    model.vertices = (Vec3 *)malloc(model.v_count * sizeof(Vec3));
+    model.normals = (Vec3 *)malloc(model.vn_count * sizeof(Vec3));
+    model.faces = (_3DR_Face *)malloc(model.f_count * sizeof(_3DR_Face));
+    model.transformedVertices = (Vec4 *)malloc(model.v_count * sizeof(Vec4));
 
-    if (!model.vertices || !model.normals || !model.faces) {
+    if (!model.vertices || !model.normals || !model.faces || !model.transformedVertices) {
         printf("OBJ_newModel(): Memory allocation failed.\n");
         _3DR_Model_deleteModel(&model);
         fclose(fpt);
@@ -73,9 +74,9 @@ _3DR_Model _3DR_Model_loadModel(const char *filePath) {
         // 如果兩者「方向相同」（點積 > 0），則頂點順序應該是順時針 (CW)，需要交換 v2 和 v3
         // 如果兩者「方向相反」（點積 < 0），則頂點順序已經是逆時針 (CCW)
         if (_3DR_Vec3_dotProduct(normal, model.normals[model.faces[i].n1]) > 0) {
-            int temp = model.faces[i].p2;
-            model.faces[i].p2 = model.faces[i].p3;
-            model.faces[i].p3 = temp;
+            // int temp = model.faces[i].p2;
+            // model.faces[i].p2 = model.faces[i].p3;
+            // model.faces[i].p3 = temp;
         }
     }
 
@@ -90,4 +91,5 @@ void _3DR_Model_deleteModel(_3DR_Model *model) {
     free(model->vertices);
     free(model->normals);
     free(model->faces);
+    free(model->transformedVertices);
 }

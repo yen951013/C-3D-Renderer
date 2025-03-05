@@ -35,24 +35,32 @@ int main() {
             Matrix4x4 MVP = _3DR_Mat_multiplyMatrix4x4(&projectionMat, &model->modelTransform);
 
             for (int j = 0; j < model->v_count; j++) {
-                Vec4 transformedVertex = {model->vertices[j].x, model->vertices[j].y, model->vertices[j].z, 1};
-        
-                // 進行 MVP 變換
-                transformedVertex = _3DR_Trans_transformVertex(transformedVertex, &MVP);
+                model->transformedVertices[j] = (Vec4){0, 0, 0, 0};
+                model->transformedVertices[j] = _3DR_Trans_transformVertex((Vec4){model->vertices[j].x, model->vertices[j].y, model->vertices[j].z, 1}, &MVP);
         
                 // 透視除法
-                if (transformedVertex.w != 0) {
-                    transformedVertex.x /= transformedVertex.w;
-                    transformedVertex.y /= transformedVertex.w;
-                    transformedVertex.z /= transformedVertex.w;
+                if (model->transformedVertices[j].w != 0) {
+                    model->transformedVertices[j].x /= model->transformedVertices[j].w;
+                    model->transformedVertices[j].y /= model->transformedVertices[j].w;
+                    model->transformedVertices[j].z /= model->transformedVertices[j].w;
                 }
-                transformedVertex.w = 1;
+                model->transformedVertices[j].w = 1;
         
                 // 視口變換
-                transformedVertex = _3DR_Trans_transformVertex(transformedVertex, &viewportTransformMat);
-        
-                // 繪製點
-                _3DR_FB_drawRectangle(&frameBuffer, transformedVertex.x - 2, transformedVertex.y - 2, 4, 4, 0xFF1111EE);
+                model->transformedVertices[j] = _3DR_Trans_transformVertex(model->transformedVertices[j], &viewportTransformMat);
+            }
+
+            for (int j = 0; j < model->f_count; j++) {
+                _3DR_drawTriangle(
+                    &frameBuffer,
+                    model->transformedVertices[model->faces[j].p1].x,
+                    model->transformedVertices[model->faces[j].p1].y,
+                    model->transformedVertices[model->faces[j].p2].x,
+                    model->transformedVertices[model->faces[j].p2].y,
+                    model->transformedVertices[model->faces[j].p3].x,
+                    model->transformedVertices[model->faces[j].p3].y,
+                    0xFF1111EE
+                );
             }
 
             model->thetaY += 2;

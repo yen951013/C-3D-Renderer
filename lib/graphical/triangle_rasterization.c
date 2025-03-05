@@ -23,11 +23,11 @@ void _3DR_drawTriangle(_3DR_FrameBuffer *frameBuffer, int x1, int y1, int x2, in
             int BCP = edgeFunction(x2, y2, x3, y3, x, y);
             int CAP = edgeFunction(x3, y3, x1, y1, x, y);
 
-            if (ABP >= 0 && BCP >= 0 && CAP >= 0) {
+            if (ABP == 0 || BCP == 0 || CAP == 0) {
+                frameBuffer->pixels[y * frameBuffer->width + x] = 0xFF666666;
+            }else if (ABP >= 0 && BCP >= 0 && CAP >= 0) {
                 // 在三角形內
                 frameBuffer->pixels[y * frameBuffer->width + x] = color;
-            } else {
-                frameBuffer->pixels[y * frameBuffer->width + x] = 0x00000000;
             }
         }
     }

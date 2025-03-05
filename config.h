@@ -1,8 +1,8 @@
 #ifndef _3DR_CONFIG_H
 #define _3DR_CONFIG_H
 
-#define _3DR_SCREEN_WIDTH 640
-#define _3DR_SCREEN_HEIGHT 480
+#define _3DR_SCREEN_WIDTH 1000
+#define _3DR_SCREEN_HEIGHT 750
 
 #define _3DR_NEAR_PLANE 0.1
 #define _3DR_FAR_PLANE 100

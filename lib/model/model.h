@@ -21,6 +21,8 @@ typedef struct _3DR_Model {
     Vec3 *normals;
     _3DR_Face *faces;
 
+    Vec4 *transformedVertices; // 變換後的頂點
+
     bool update;
     Vec3 position;
     float thetaX, thetaY, thetaZ;
