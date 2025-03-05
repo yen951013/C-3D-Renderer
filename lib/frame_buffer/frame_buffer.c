@@ -1,5 +1,11 @@
 #include "frame_buffer.h"
 
+void _3DR_FB_clear(_3DR_FrameBuffer *frameBuffer) {
+    for (int i = 0; i < frameBuffer->width * frameBuffer->height; i++) {
+        frameBuffer->pixels[i] = 0;
+    }
+}
+
 _3DR_FrameBuffer _3DR_FB_newFrameBuffer(size_t width, size_t height) {
     _3DR_FrameBuffer frameBuffer;
     frameBuffer.pixels = malloc(width * height * sizeof(uint32_t));

@@ -11,6 +11,8 @@ typedef struct _3DR_FrameBuffer {
     size_t height;
 } _3DR_FrameBuffer;
 
+void _3DR_FB_clear(_3DR_FrameBuffer *frameBuffer);
+
 _3DR_FrameBuffer _3DR_FB_newFrameBuffer(size_t width, size_t height);
 
 void _3DR_FB_drawRectangle(_3DR_FrameBuffer *frameBuffer, int x, int y, int width, int height, uint32_t color);

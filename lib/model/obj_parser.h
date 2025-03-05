@@ -7,6 +7,8 @@
 #include <stdbool.h>
 #include "model.h"
 
+typedef struct _3DR_Model _3DR_Model;
+
 _3DR_Model _3DR_Model_loadModel(const char *filePath);
 void _3DR_Model_deleteModel(_3DR_Model *model);
 

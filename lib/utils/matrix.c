@@ -95,7 +95,7 @@ Matrix4x4 _3DR_Mat_newViewportTransformMat4x4(int screenWidth, int screenHeight)
     mat.m[0] = screenWidth / 2.0f;
 	mat.m[3] = (screenWidth - 1) / 2.0f;
 	mat.m[5] = -screenHeight / 2.0f;
-	mat.m[7] = -(screenHeight - 1) / 2.0f + screenHeight;
+	mat.m[7] = (screenHeight - 1) / 2.0f;
 	mat.m[10] = 1.0f;
 	mat.m[15] = 1.0f;
 	

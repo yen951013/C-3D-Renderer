@@ -9,6 +9,8 @@
 #define _3DR_FOV_DEGREE 60
 #define _3DR_ASPECT (_3DR_SCREEN_WIDTH / _3DR_SCREEN_HEIGHT)
 
+#define MAX_MODELS 30
+
 #include "lib/frame_buffer/frame_buffer.h"
 #include "lib/graphical/triangle_rasterization.h"
 #include "lib/graphical/transform.h"

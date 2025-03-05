@@ -16,12 +16,13 @@ endif
 
 OBJS = main.o \
 platform.o \
+lib/frame_buffer/frame_buffer.o \
 lib/graphical/transform.o \
 lib/graphical/triangle_rasterization.o \
-lib/frame_buffer/frame_buffer.o \
+lib/model/model.o \
+lib/model/obj_parser.o \
 lib/utils/vector.o \
-lib/utils/matrix.o \
-lib/model/obj_parser.o
+lib/utils/matrix.o
 
 # 目標可執行檔
 output.out: $(OBJS)

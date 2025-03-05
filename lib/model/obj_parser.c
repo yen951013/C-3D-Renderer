@@ -39,7 +39,7 @@ _3DR_Model _3DR_Model_loadModel(const char *filePath) {
     // 第二次遍歷：讀取檔案
     rewind(fpt);
 
-    int vi = 0, vti = 0, vni = 0, fi = 0, faceNormalIndex;
+    int vi = 0/*, vti = 0*/, vni = 0, fi = 0;
     while (fgets(line, sizeof(line), fpt) != NULL) {
         if (strncmp(line, "v ", 2) == 0) {
             sscanf(line, "v %f %f %f", &model.vertices[vi].x, &model.vertices[vi].y, &model.vertices[vi].z);
